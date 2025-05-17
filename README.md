@@ -1,4 +1,6 @@
-# 🪞 Roasture
+# Roasture
+
+![Image](https://github.com/user-attachments/assets/ef36262f-0006-4d28-924f-a481c2b6c8eb)
 
 **Roasture** is a posture analysis web application that combines AI-based pose estimation with fun, meme-style feedback. Built using TensorFlow.js and MoveNet, it detects key body joints from an uploaded image and generates casual roast-style posture critiques.
 
