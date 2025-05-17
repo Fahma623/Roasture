@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🪞 Roasture
 
-## Getting Started
+**Roasture** is a posture analysis web application that combines AI-based pose estimation with fun, meme-style feedback. Built using TensorFlow.js and MoveNet, it detects key body joints from an uploaded image and generates casual roast-style posture critiques.
 
-First, run the development server:
+## 📸 What It Does
+
+- Users upload a photo showing their posture (e.g., sitting at a desk or using a phone).
+- The app runs pose detection directly in the browser using TensorFlow.js and the MoveNet model.
+- It analyzes key points like shoulder alignment, back curvature, and head tilt.
+- Based on simple heuristics, it generates a humorous or sassy comment.
+- No image uploads to the cloud — all processing is done locally for privacy and speed.
+
+---
+
+## 🔧 Tech Stack
+
+| Layer      | Tools/Libs                                      |
+| ---------- | ----------------------------------------------- |
+| Frontend   | Next.js 15 (App Router) + Tailwind CSS          |
+| AI/ML      | TensorFlow.js + MoveNet Lightning (single pose) |
+| Deployment | Vercel                                          |
+| Styling    | Custom Tailwind styles with blurred meme image  |
+| Language   | TypeScript                                      |
+
+---
+
+## 🧠 Technical Workflow
+
+1. **Image Upload**  
+   User selects a local image. This image is rendered in the browser via `<img>`.
+
+2. **Pose Estimation**  
+   On "Analyze" click, TensorFlow.js loads the MoveNet model (`SinglePose.Lightning`) and estimates the posture based on keypoints like:
+
+   - Shoulders
+   - Spine (approximated)
+   - Head/neck tilt
+
+3. **Posture Evaluation Logic**  
+   Using distances and angles between keypoints, we apply basic heuristics like:
+   - Are the shoulders level?
+   - Is the head tilted forward?
+   - Is the spine curved?
+4. **Fun Feedback Generator**  
+   Based on the above logic, the app selects a randomized roast or praise message for the user.
+
+5. **Client-Side Execution**  
+   All analysis is done **client-side** using TensorFlow.js in the browser. No data is stored or transmitted externally.
+
+---
+
+## 🚀 Live Demo
+
+🔗[https://roasture-ruxm.vercel.app](https://roasture-ruxm.vercel.app)
+
+---
+
+## 🛠️ Run Locally
 
 ```bash
+git clone https://github.com/Fahma623/Roasture.git
+cd Roasture
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
